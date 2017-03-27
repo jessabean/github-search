@@ -40,7 +40,15 @@ form.addEventListener('submit', function(event) {
 
       repos.forEach(function(repo){
         let item = list.createItem();
-        item.innerHTML = repo.name;
+        let itemLink = document.createElement('a');
+        let itemImg = document.createElement('img');
+        let itemText = document.createElement('span');
+        itemLink.href = repo.html_url;
+        itemImg.src = repo.owner.avatar_url;
+        itemText.innerHTML = repo.name;
+        itemLink.appendChild(itemImg);
+        itemLink.appendChild(itemText);
+        item.appendChild(itemLink);
         list.addItem(item);
       })
     })
