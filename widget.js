@@ -39,7 +39,7 @@ form.addEventListener('submit', function(event) {
   results.innerHTML = '';
   let search = new Search();
 
-  new Ajax(`https://api.github.com/search/repositories?access_token=0769f07df1f34bacf719bd46c1ef19722c4c0d92&q={${search._query}}`)
+  new Ajax(`https://api.github.com/search/repositories?q={${search._query}}`)
     .then( x => {
       let repos = x.items;
       let list = new List();
