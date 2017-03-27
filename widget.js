@@ -40,8 +40,8 @@ form.addEventListener('submit', function(event) {
   let search = new Search();
 
   new Ajax(`https://api.github.com/search/repositories?q={${search._query}}`)
-    .then( x => {
-      let repos = x.items;
+    .then( searchResults => {
+      let repos = searchResults.items;
       let list = new List();
       results.appendChild(list.renderList());
 
