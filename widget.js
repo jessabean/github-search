@@ -7,11 +7,18 @@ class List {
     this._list = document.createElement('ul');
   }
 
-  createItem() {
-    return document.createElement('li');
-  }
+  createItem(repo) {
+    let item = document.createElement('li');
+    let itemLink = document.createElement('a');
+    let itemImg = document.createElement('img');
+    let itemText = document.createElement('span');
+    itemLink.href = repo.html_url;
+    itemImg.src = repo.owner.avatar_url;
+    itemText.innerHTML = repo.name;
+    itemLink.appendChild(itemImg);
+    itemLink.appendChild(itemText);
+    item.appendChild(itemLink);
 
-  addItem(item) {
     this._list.appendChild(item);
   }
 
@@ -39,17 +46,7 @@ form.addEventListener('submit', function(event) {
       results.appendChild(list.renderList());
 
       repos.forEach(function(repo){
-        let item = list.createItem();
-        let itemLink = document.createElement('a');
-        let itemImg = document.createElement('img');
-        let itemText = document.createElement('span');
-        itemLink.href = repo.html_url;
-        itemImg.src = repo.owner.avatar_url;
-        itemText.innerHTML = repo.name;
-        itemLink.appendChild(itemImg);
-        itemLink.appendChild(itemText);
-        item.appendChild(itemLink);
-        list.addItem(item);
+        list.createItem(repo);
       })
     })
     .catch( e => {
